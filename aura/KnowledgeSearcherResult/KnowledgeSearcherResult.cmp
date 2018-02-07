@@ -1,0 +1,25 @@
+<aura:component description="KnowledgeSearcherResult">
+	<aura:attribute name="article" type="object" access="public" />
+	<li class="slds-item slds-p-vertical--x-small">
+		<div class="slds-tile">
+			<div class="slds-grid">
+				<div class="slds-size--5-of-6 slds-truncate" title="{!v.article.Title}">
+					<a href="javascript:void" onclick="{!c.navigate}">{!v.article.Title}</a>
+				</div>
+				<div class="slds-size--1-of-6">
+					<lightning:buttonMenu iconName="utility:down" alternativeText="Knowledge Article Actions" class="slds-float_right" menuAlignment="right" iconSize="x-small">
+						<lightning:menuItem label="Attach to Case" value="attach" />
+						<lightning:menuItem label="Open" value="open" />
+					</lightning:buttonMenu>
+				</div>
+			</div>
+			<div class="slds-tile__detail slds-text-body_small">
+				<ul class="slds-list--horizontal slds-wrap slds-has-dividers_right">
+					<li class="slds-item">{!v.article.ArticleNumber}</li>
+					<li class="slds-item">{!v.article.ValidationStatus}</li>
+					<li class="slds-item"><lightning:formattedDateTime value="{!v.article.LastPublishedDate}" year="numeric" month="numeric" day="numeric"  hour="2-digit" minute="2-digit" /></li>
+				</ul>
+			</div>
+		</div>
+	</li>
+</aura:component>

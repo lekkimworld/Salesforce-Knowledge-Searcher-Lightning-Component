@@ -1,0 +1,40 @@
+<aura:component description="Knowledge Searcher Component" implements="flexipage:availableForAllPageTypes, force:hasRecordId" controller="KnowledgeSearcher_LCC">
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+	<aura:attribute name="articles" type="Object[]" access="PRIVATE" />
+
+	<lightning:card class="slds-card_boundary">
+		<div class="slds-p-horizontal_small">
+			<h2 class="title slds-m-bottom_small"><span class="slds-text-heading_small slds-truncate" title="Knowledge">Knowledge</span></h2>
+
+			<div class="slds-grid slds-m-bottom_small">
+				<div class="slds-size--10-of-12">
+					<ui:inputText placeholder="Search Knowledge" class="slds-m-right_small" />
+				</div>
+				<div class="slds-size--2-of-12 slds-clearfix">
+					<lightning:buttonMenu iconName="utility:sort" alternativeText="Sort options" class="slds-float_right" menuAlignment="right">
+						<lightning:menuItem label="Relevance" value="relevance" />
+						<lightning:menuItem label="Ascending" value="ascending" />
+						<lightning:menuItem label="Descending" value="descending" />
+					</lightning:buttonMenu>
+				</div>
+			</div>
+			<aura:if isTrue="{!not(empty(v.articles))}">
+				<div class="slds-text-body_small slds-m-bottom_small">
+					Suggested Articles
+					<ul class="slds-list--horizontal slds-wrap slds-has-dividers_right">
+						<li class="slds-item">{!v.articles.length} results</li>
+						<li class="slds-item">Sorted by Relevance</li>
+					</ul>
+				</div>
+				<ul class="slds-has-dividers_bottom">
+					<aura:iteration items="{!v.articles}" var="a">
+						<c:KnowledgeSearcherResult article="{!a}" />
+					</aura:iteration>
+				</ul>
+				<aura:set attribute="else">
+					No articles found.
+				</aura:set>
+			</aura:if>
+		</div>
+	</lightning:card>
+</aura:component>
