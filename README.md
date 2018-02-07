@@ -5,17 +5,18 @@ In the demo org I'm using I've added a Region and a Sub Region field to the Case
 The Apex class is where the meat of the matter is and where the interaction with the Case object and Data Category Mapping is performed. Once loaded and initialized the Knowledge Lightning Component calls the controller that in turn will perform the search using Salesforce Object Search Language (SOSL) and return results to the component for display. The controller uses the Schema class to get access to the configured Data Category Mapping and the hierarchy of values. The controller will recursively attempt to find the most specific Data Category matching the values from the Case object the search is based on. If a Data Category is found it will be added to the SOSL search using the WITH DATA CATEGORY filter option (https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/sforce_api_calls_soql_select_with_datacategory.htm) and a search for the terms in the Subject field performed.
 
 In my demo org the Data Category Mapping is called Region and is as follows:
-- All
+* All
   - Europe
-   - Southern Europe
-   - Northern Europe
-   - Western Europe
-   - Eastern Europe
+    * Southern Europe
+    * Northern Europe
+      *  Western Europe
+      * Eastern Europe
   - Americas
-   - North America
-   - South America
+    * North America
+    * South America
   - Asia
   - Africa
+  - Oceania
   - Oceania
 
 The SOSL search is performed using the BELOW option (https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/sforce_api_calls_soql_select_with_datacategory_filterselectors.htm) so that any search related to a Case mapped to Europe will search in Knowledge Articles mapped to Europe and any child category (Northern Europe, Eastern Europe etc.)
