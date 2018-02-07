@@ -9,8 +9,8 @@ In my demo org the Data Category Mapping is called Region and is as follows:
   - Europe
     * Southern Europe
     * Northern Europe
-      *  Western Europe
-      * Eastern Europe
+    *  Western Europe
+    * Eastern Europe
   - Americas
     * North America
     * South America
